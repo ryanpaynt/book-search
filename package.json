@@ -25,5 +25,10 @@
   "homepage": "https://github.com/ryanpaynt/book-search#readme",
   "devDependencies": {
     "concurrently": "^6.2.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1"
   }
 }
