@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "book-search",
+			"path": "."
+		},
+		{
+			"name": "server",
+			"path": "../../Uncc_bootcamp/21-MERN/02-Homework/Develop/server"
+		},
+		{
+			"name": "client",
+			"path": "../../Uncc_bootcamp/21-MERN/02-Homework/Develop/client"
+		}
+	],
+	"settings": {}
+}

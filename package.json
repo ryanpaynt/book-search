@@ -1,0 +1,29 @@
+{
+  "name": "book-search",
+  "version": "1.0.0",
+  "description": "book-search",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && npm start",
+    "start:prod": "cd server && npm start",
+    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "heroku-postbuild": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanpaynt/book-search.git"
+  },
+  "keywords": [],
+  "author": "Ryan Paynter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanpaynt/book-search/issues"
+  },
+  "homepage": "https://github.com/ryanpaynt/book-search#readme",
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
