@@ -1,41 +1,28 @@
-const { Thought } = require('../models');
+const { User, Books } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    thoughts: async () => {
-      return Thought.find().sort({ createdAt: -1 });
-    },
 
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    me: async (parent, args, context) => {
+      if(context.user){
+        const data = await User.findOne({})
+        .select('__v -password')
+        .populate('books')
+
+        return data;
+      }
+      throw new AuthenticationError('Not logged in');
     },
   },
 
   Mutation: {
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      return Thought.create({ thoughtText, thoughtAuthor });
-    },
-    addComment: async (parent, { thoughtId, commentText }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        {
-          $addToSet: { comments: { commentText } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
-    },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $pull: { comments: { _id: commentId } } },
-        { new: true }
-      );
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return {token, user};
     },
   },
 };
