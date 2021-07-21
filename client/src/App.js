@@ -4,23 +4,20 @@ import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
-import { ApolloClient, ApolloProvider } from '@apollo/client';
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
+import { ApolloClient, ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  request: operation => {
+    const token = localStorage.getItem('id_token');
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    })
+  },
+  uri: '/graphql'
 });
 
 function App() {
