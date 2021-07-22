@@ -37,7 +37,7 @@ This app is a book-search app. It allows users to search for a book and save it 
 5. **Logout** allows the user to logout
 6. **See your Books** to see all of the books saved
 
-A demo of the application is available at: https://fitness-tracker-1402.herokuapp.com/
+A demo of the application is available at: 
 
 ## Features
 * Log-in/sign-up
@@ -51,11 +51,15 @@ This project uses the MIT license
 ## Screenshots - home
 **Home Page**
 
-<img src="">
+<img src="./img/search.jpg">
 
 ## See your Books
 
-<img src="">
+<img src="./img/me-page.jpg">
+
+## Log in
+
+<img src="./img/log.jpg">
 
 ## Questions
 Checkout my GitHub [profile](https://github.com/ryanpaynt)
