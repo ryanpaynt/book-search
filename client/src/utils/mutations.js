@@ -59,9 +59,7 @@ export const REMOVE_BOOK = gql`
             _id
             username
             email
-            bookCount
             savedBooks {
-                _id
                 bookId
                 authors
                 image
